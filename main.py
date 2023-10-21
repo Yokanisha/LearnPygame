@@ -11,6 +11,7 @@ height = robot.get_height()
 
 
 x, y = 0, 0
+velocity = 1
 clock = pygame.time.Clock()
 window.fill((0, 0, 0))
 
@@ -22,5 +23,10 @@ while True:
     window.blit(robot, (x, y))
     pygame.display.flip()  # updates the contents of the window
 
-    x += 1
-    clock.tick(60) # the loop should be executed 60 times a second
+    x += velocity
+    if velocity > 0 and x+robot.get_width() >= 640:
+        velocity = -velocity
+    if velocity < 0 and x <= 0:
+        velocity = -velocity
+
+    clock.tick(240) # the loop should be executed 60 times a second
