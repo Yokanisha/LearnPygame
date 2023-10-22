@@ -1,3 +1,5 @@
+import math
+
 import pygame
 import random
 
@@ -11,7 +13,7 @@ height = robot.get_height()
 
 
 x, y = 0, 0
-velocity = 1
+angle = 0
 clock = pygame.time.Clock()
 window.fill((0, 0, 0))
 
@@ -20,13 +22,12 @@ while True:
         if event.type == pygame.QUIT:
             exit()
 
+    x = math.cos(angle)*100 + 640/2 - robot.get_width()
+    y = math.sin(angle)*100 + 320/2
+
     window.blit(robot, (x, y))
     pygame.display.flip()  # updates the contents of the window
 
-    x += velocity
-    if velocity > 0 and x+robot.get_width() >= 640:
-        velocity = -velocity
-    if velocity < 0 and x <= 0:
-        velocity = -velocity
+    angle += 0.01
+    clock.tick(60) # the loop should be executed 60 times a second
 
-    clock.tick(240) # the loop should be executed 60 times a second
