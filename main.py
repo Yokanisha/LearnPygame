@@ -31,3 +31,5 @@ while True:
     angle += 0.01
     clock.tick(60) # the loop should be executed 60 times a second
 
+    #Make it up and down aniamtion ..
+
